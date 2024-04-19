@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   lst_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
+/*   By: fharifen <fiononana.hari@gmail.com>       +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 18:14:37 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/19 09:38:18 by fharifen         ###   ########.fr       */
+/*   Created: 2024/04/18 11:50:36 by fharifen          #+#    #+#             */
+/*   Updated: 2024/04/19 11:38:30 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "push_swap.h"
 
 // Allocate a new list
 d_list  *ft_lst_new(void)
@@ -27,13 +27,14 @@ d_list  *ft_lst_new(void)
     return (new);
 }
 
-// Add list in back 
+// Add list to back 
 void ft_lstadd_back(d_list *list, int data)
 {
     if (list == NULL)
         return ;
 
-    struct node *new_node = malloc(sizeof(*new_node));
+    struct node *new_node;
+    new_node = malloc(sizeof(*new_node));
     if (new_node == NULL)
         return ;
 
@@ -54,3 +55,28 @@ void ft_lstadd_back(d_list *list, int data)
     }
     list->length++;
 }
+
+// Add list to top
+void ft_lstadd_top(d_list *list, int data)
+{
+	struct node *new_node;
+	new_node = malloc(sizeof(*new_node));
+	if (new_node == NULL)
+		return ;
+	new_node->val = data;
+	new_node->p_prev = NULL;
+	if (list->p_head == NULL)
+	{
+		new_node->p_next = NULL;
+		list->p_tail = new_node;
+		list->p_head = new_node;
+	}
+	else	
+	{
+		new_node->p_next = list->p_head;
+		list->p_head->p_prev = new_node;
+		list->p_head = new_node;
+	}
+	list->length++;
+}
+  
