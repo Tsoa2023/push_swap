@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>       +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:50:36 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/19 11:38:30 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:59:04 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void ft_lstadd_back(d_list *list, int data)
     new_node = malloc(sizeof(*new_node));
     if (new_node == NULL)
         return ;
-
     new_node->val = data;
     new_node->p_next = NULL;
-
     if (list->p_tail == NULL)
     {
         new_node->p_prev = NULL;
