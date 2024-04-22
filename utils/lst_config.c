@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lst_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fharifen <fiononana.hari@gmail.com>       +#+  +:+       +#+         */
+/*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:50:36 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 13:59:04 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:42:31 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // Allocate a new list
 d_list  *ft_lst_new(void)

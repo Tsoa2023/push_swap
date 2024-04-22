@@ -6,11 +6,11 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:43:25 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 11:10:59 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:39:58 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	sa_swap(d_list *list)
 {

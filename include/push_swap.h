@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:59:44 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 16:32:13 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:31:02 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 
 struct node
 {
@@ -38,6 +38,10 @@ void	sa_swap(d_list *list);
 void	sb_swap(d_list *list);
 void	ss_swap(d_list *list_a, d_list *list_b);
 void	pa_push(d_list *list_a, d_list *list_b);
-int check(char **argv, int argc);
+int     check(char **argv, int argc);
+void    ra_rotate(d_list *list);
+void	rb_rotate(d_list *list);
+void	rr_rotate(d_list *list_a, d_list *list_b);
+int     check_error(char **argv, int argc);
 
 #endif

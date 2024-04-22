@@ -6,11 +6,11 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 16:11:52 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/22 23:06:36 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./include/push_swap.h"
 
 void ft_print_lst(d_list *stack_a, d_list *stack_b)
 {
@@ -58,18 +58,19 @@ int main(int argc, char *argv[])
     d_list *stack_a;
     d_list *stack_b;
     
-    if (argc < 2)
-      return (0);
+    if (argc < 2 || check_error(argv, argc))
+        return (EXIT_FAILURE);
     stack_a = ft_lst_new();
     stack_b = ft_lst_new();
 
+    
     init_stack(stack_a, argv, argc);
     init_stack(stack_b, argv, argc);
-	pa_push(stack_a, stack_b);
+    rr_rotate(stack_a, stack_b);
     ft_print_lst(stack_a, stack_b);
 
     free(stack_a);
     free(stack_b);
 
-    return (0);
+    return (EXIT_SUCCESS);
 }
