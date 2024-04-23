@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:59:44 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 22:31:02 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:14:34 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void    ra_rotate(d_list *list);
 void	rb_rotate(d_list *list);
 void	rr_rotate(d_list *list_a, d_list *list_b);
 int     check_error(char **argv, int argc);
+int		is_sorted(char **argv, int size, int i);
 
 #endif

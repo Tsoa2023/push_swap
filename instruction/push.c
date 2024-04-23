@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:15:14 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 21:40:23 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/23 07:36:37 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	pa_push(d_list *list_a, d_list *list_b)
 {
-	struct node *node_a;
 	struct node *node_b;
 
-	node_a = list_a->p_head;
 	node_b = list_b->p_head;
 	if (list_b->p_head == NULL)
 		return ;
@@ -30,11 +28,8 @@ void	pa_push(d_list *list_a, d_list *list_b)
 void	pb_push(d_list *list_a, d_list *list_b)
 {
 	struct node *node_a;
-	struct node *node_b;
-	int			tmp;
 
 	node_a = list_a->p_head;
-	node_b = list_b->p_head;
 	if (list_b->p_head == NULL)
 		return ;
 	ft_lstadd_top(list_b, node_a->val);

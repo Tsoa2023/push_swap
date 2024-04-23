@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/22 23:06:36 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:20:33 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void  init_stack(d_list *stack, char **argv, int argc)
 
   i = 0;
   if (argc == 2)
-      args = ft_split(argv[1], ' ');
+      args = ft_split(argv[1], ' ', &argc);
   else 
   {
       args = argv;
