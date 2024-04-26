@@ -6,22 +6,24 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:38:51 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/23 16:21:08 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/26 08:30:35 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-/* int is_sorted(char **argv, int size, int i)
+int is_sorted(t_list **stack)
 {
-	while (i < size - 1)
+	if ((*stack)->p_head == NULL && (*stack)->p_tail == NULL)
+		return (1);
+	while ((*stack)->p_head->p_next)
 	{
-		if (ft_atoi(argv[i]) > ft_atoi(argv[i + 1]))
+		if ((*stack)->p_head->val > (*stack)->p_head->p_next->val)
 			return (0);
-		i++;
+		(*stack)->p_head = (*stack)->p_head->p_next;
 	}
 	return (1);
-} */
+}
 
 int	is_double(char **argv, int size, int i)
 {
