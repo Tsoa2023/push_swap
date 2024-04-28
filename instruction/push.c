@@ -6,22 +6,23 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:15:14 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/26 16:57:55 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/28 21:40:23 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
 void	push(t_list *list, struct node *elem)
 {
+	if (elem == NULL)
+		return ;
 	elem->p_next = list->p_head;
-	if (list->p_head != NULL)
+	if (list->p_tail != NULL || list->p_head != NULL)
 		list->p_head->p_prev = elem;
 	else
 		list->p_tail = elem;
 	list->p_head = elem;
-	elem->p_prev = NULL;
+	list->p_head->p_prev = NULL;
 	list->length++;
 }
 
@@ -48,8 +49,9 @@ void	pa_push(t_list **list_a, t_list **list_b, int flag)
 	if ((*list_b)->p_head != NULL)
 		(*list_b)->p_head->p_prev = NULL;
 	push(*list_a, node_b);
+	(*list_b)->length--;
 	if (flag == 1)
-		ft_putstr_fd("pa", 1);
+		ft_putstr_fd("pa\n", 1);
 }			
 
 void	pb_push(t_list **list_a, t_list **list_b, int flag)
@@ -63,6 +65,7 @@ void	pb_push(t_list **list_a, t_list **list_b, int flag)
 	if ((*list_a)->p_head != NULL)
 		(*list_a)->p_head->p_prev = NULL;
 	push(*list_b, node_a);
+	(*list_a)->length--;
 	if (flag == 1)
-		ft_putstr_fd("pb", 1);
+		ft_putstr_fd("pb\n", 1);
 }			

@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/26 17:14:12 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/28 18:46:45by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,10 @@ int main(int argc, char *argv[])
     
     init_stack(stack_a, argv, argc);
     ft_print_lst(stack_a, stack_b);
-
-	pb_push(stack_a, stack_b, 1);
+	printf("sorted: %d\n", is_sorted(stack_a));
+	three_elem(stack_a);
     ft_print_lst(stack_a, stack_b);
-	pb_push(stack_a, stack_b, 1);
-    ft_print_lst(stack_a, stack_b);
-
-
+	
 	check_sorted(stack_a);
     free_lst(stack_a);
     free_lst(stack_b);

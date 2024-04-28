@@ -6,28 +6,39 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:32:29 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/25 13:59:41 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/28 21:05:22by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	two_elem(d_list *stack)
+void three_elem(t_list **stack_a)
 {
-	struct node *node;
-
-	node = stack->p_head;
-	if (stack->p_head == NULL && stack->p_tail == NULL)
+    struct node *node;
+	 
+	node = (*stack_a)->p_head;
+	if (node == NULL || is_sorted(stack_a))
 		return ;
-	while (node)
+	if (node->p_next->index == 0)
 	{
-		if ((node->index == 1 && node->p_next->index == 0) 
-			|| (node->index == 0 && node->p_next->index == 2))
-			sa_swap(stack);
-		node = node->p_next;
+		if ((*stack_a)->p_head->val < (*stack_a)->p_tail->val)
+	 		sa_swap(stack_a, 1);
+		else
+			ra_rotate(stack_a, 1);	
 	}
-	if (node->index == 2 && node->p_next == 0 && node->p_next->p_next == 1)
-		ra_rotate(stack);
-	if (node->index == 1 && node->p_next == 2 && node->p_next->p_next == 0)
-		
+	else if (node->p_next->p_next->index == 0)
+	{
+		if ((*stack_a)->p_head->val > (*stack_a)->p_head->p_next->val)
+		{
+	 		sa_swap(stack_a, 1);
+			rra_rotate(stack_a, 1);
+		}
+		else
+			rra_rotate(stack_a, 1);
+	}	
+	else
+	{
+		sa_swap(stack_a, 1);
+		ra_rotate(stack_a, 1);	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:38:51 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/26 08:30:35 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/28 22:15:00 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int is_sorted(t_list **stack)
 {
-	if ((*stack)->p_head == NULL && (*stack)->p_tail == NULL)
+	struct node *node;
+
+	node = (*stack)->p_head;
+	if (node == NULL && node == NULL)
 		return (1);
-	while ((*stack)->p_head->p_next)
+	while (node->p_next)
 	{
-		if ((*stack)->p_head->val > (*stack)->p_head->p_next->val)
+		if (node->val > node->p_next->val)
 			return (0);
-		(*stack)->p_head = (*stack)->p_head->p_next;
+		node = node->p_next;
 	}
 	return (1);
 }

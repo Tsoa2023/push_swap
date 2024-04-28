@@ -6,46 +6,56 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:43:25 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/26 17:14:39 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:48:25by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	sa_swap(t_list **list, int flag)
+void sa_swap(t_list **list, int flag)
 {
-	int	tmp;
-	struct node	*node;
+    struct node *first;
+    struct node *second;
 
-	node = (*list)->p_head;
-	if ((*list)->p_head == NULL && (*list)->p_tail == NULL)
-		return ;
-	tmp = node->val;
-	node->val = node->p_next->val;
-	node->p_next->val = tmp;
-	if (flag == 1)
-		ft_putstr_fd("sa", 1);
+    if ((*list)->p_head == NULL || (*list)->p_head->p_next == NULL)
+        return;
+    first = (*list)->p_head;
+    second = first->p_next;
+    first->p_next = second->p_next;
+    if (second->p_next != NULL)
+        second->p_next->p_prev = first;
+    first->p_prev = second;
+    second->p_next = first;
+    second->p_prev = NULL;
+    (*list)->p_head = second;
+    if (flag == 1)
+        ft_putstr_fd("sa\n", 1);
 }
 
-void	sb_swap(t_list **list, int flag)
+void sb_swap(t_list **list, int flag)
 {
-	int		tmp;
-	struct node *node;
+    struct node *first;
+    struct node *second;
 
-	node = (*list)->p_head;
-	if ((*list)->p_head == NULL && (*list)->p_tail == NULL)
-		return ;
-	tmp = node->val;
-	node->val = node->p_next->val;
-	node->p_next->val = tmp;
-	if (flag == 1)
-		ft_putstr_fd("sb", 1);
+    if ((*list)->p_head == NULL || (*list)->p_head->p_next == NULL)
+        return;
+    first = (*list)->p_head;
+    second = first->p_next;
+    first->p_next = second->p_next;
+    if (second->p_next != NULL)
+        second->p_next->p_prev = first;
+    first->p_prev = second;
+    second->p_next = first;
+    second->p_prev = NULL;
+    (*list)->p_head = second;
+    if (flag == 1)
+        ft_putstr_fd("sb\n", 1);
 }
 
 void	ss_swap(t_list **list_a, t_list **list_b, int flag)
 {
-	sa_swap(list_a);
-	sb_swap(list_b);
+	sa_swap(list_a, 0);
+	sb_swap(list_b, 0);
 	if (flag == 1)
-		ft_putstr_fd("ss", 1);
+		ft_putstr_fd("ss\n", 1);
 }
