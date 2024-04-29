@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:15:14 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/28 21:40:23 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:46:28 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	push(t_list *list, struct node *elem)
 		list->p_tail = elem;
 	list->p_head = elem;
 	list->p_head->p_prev = NULL;
-	list->length++;
 }
 
 void	push_back(t_list *list, struct node *elem)
@@ -35,7 +34,6 @@ void	push_back(t_list *list, struct node *elem)
 		list->p_head = elem;
 	list->p_tail = elem;
 	elem->p_next = NULL;
-	list->length++;
 }
 
 void	pa_push(t_list **list_a, t_list **list_b, int flag)
@@ -50,6 +48,8 @@ void	pa_push(t_list **list_a, t_list **list_b, int flag)
 		(*list_b)->p_head->p_prev = NULL;
 	push(*list_a, node_b);
 	(*list_b)->length--;
+	init_index_lst(list_a);
+	init_index_lst(list_b);
 	if (flag == 1)
 		ft_putstr_fd("pa\n", 1);
 }			
@@ -66,6 +66,8 @@ void	pb_push(t_list **list_a, t_list **list_b, int flag)
 		(*list_a)->p_head->p_prev = NULL;
 	push(*list_b, node_a);
 	(*list_a)->length--;
+	init_index_lst(list_a);
+	init_index_lst(list_b);
 	if (flag == 1)
 		ft_putstr_fd("pb\n", 1);
 }			

@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:59:44 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/28 21:55:34 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:07:01 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ struct node
 {
     int			val;
 	int			index;
+	int			index_lst;
     struct node *p_next;
     struct node *p_prev;
 };
@@ -55,9 +56,10 @@ void	rrr_rotate(t_list **list_a, t_list **list_b, int flag);
 int     check_error(char **argv, int argc);
 int		is_sorted(t_list **stack);
 void	indexing(t_list **stack);
+void	init_index_lst(t_list **list);
 struct node *get_min(t_list **stack);
 struct node *get_max(t_list **stack);
 void	three_elem(t_list **stack_a);
-void	three_sort(t_list **stack);
+void	five_elem(t_list **stack_a, t_list **stack_b);
 
 #endif

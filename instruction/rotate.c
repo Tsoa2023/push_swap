@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:13:32 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/28 20:55:35 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:30:38 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void ra_rotate(t_list **list, int flag)
 	(*list)->p_head = node->p_next;
 	(*list)->p_head->p_prev = NULL;
 	push_back(*list, node);
+	init_index_lst(list);
 	if (flag == 1)
 		ft_putstr_fd("ra\n", 1);
 }
@@ -36,6 +37,7 @@ void	rb_rotate(t_list **list, int flag)
 	(*list)->p_head = node->p_next;
 	(*list)->p_head->p_prev = NULL;
 	push_back(*list, node);
+	init_index_lst(list);
 	if (flag == 1)
 		ft_putstr_fd("rb\n", 1);
 }
@@ -61,6 +63,7 @@ void rra_rotate(t_list **list, int flag)
     node->p_prev = NULL;
     (*list)->p_head->p_prev = node;
     (*list)->p_head = node;
+	init_index_lst(list);
     if (flag == 1)
         ft_putstr_fd("rra\n", 1);
 }
@@ -78,6 +81,7 @@ void rrb_rotate(t_list **list, int flag)
     node->p_next = (*list)->p_head;
     (*list)->p_head->p_prev = node;
     (*list)->p_head = node;
+	init_index_lst(list);
     if (flag == 1)
         ft_putstr_fd("rrb\n", 1);
 }

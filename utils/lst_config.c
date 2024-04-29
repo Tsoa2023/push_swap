@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:50:36 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/26 10:29:49 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:01:08 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,21 @@ void	free_lst(t_list **list)
 		}
 		free(*list), *list = NULL;
 		free(list);
+	}
+}
+
+void	init_index_lst(t_list **list)
+{
+	struct node *node;
+	int			i;
+	
+	node = (*list)->p_head;
+	if ((*list)->p_head == NULL)
+		return ;
+	i = 0;
+	while (node)
+	{
+		node->index_lst = i++;
+		node = node->p_next;
 	}
 }

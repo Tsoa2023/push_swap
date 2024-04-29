@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/28 18:46:45by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:43:39 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_print_lst(t_list **stack_a, t_list **stack_b)
     {
         if (tmpa)
         {
-            printf("%d (%d)\t", tmpa->val, tmpa->index);
+            printf("%d (%d) (%d)\t", tmpa->val, tmpa->index, tmpa->index_lst);
 			fflush(stdout);
             tmpa = tmpa->p_next;
         }
@@ -31,7 +31,7 @@ void ft_print_lst(t_list **stack_a, t_list **stack_b)
 		}
         if (tmpb)
         {
-            printf("%d (%d)\t", tmpb->val, tmpb->index);
+            printf("%d (%d) (%d)\t", tmpb->val, tmpb->index, tmpb->index_lst);
 			fflush(stdout);
             tmpb = tmpb->p_next;
         }
@@ -74,6 +74,7 @@ void  init_stack(t_list **stack, char **argv, int argc)
 		i++;
 	}
 	indexing(stack);
+	init_index_lst(stack);
 }
 
 int main(int argc, char *argv[])
@@ -91,13 +92,14 @@ int main(int argc, char *argv[])
         return (EXIT_FAILURE);
 	}
 
-    
     init_stack(stack_a, argv, argc);
-    ft_print_lst(stack_a, stack_b);
-	printf("sorted: %d\n", is_sorted(stack_a));
-	three_elem(stack_a);
-    ft_print_lst(stack_a, stack_b);
+	ft_print_lst(stack_a, stack_b);
+	if ((*stack_a)->length <= 3)
+		three_elem(stack_a);
+	if ((*stack_a)->length >= 4 && (*stack_a)->length <= 10)
+		five_elem(stack_a, stack_b);
 	
+	ft_print_lst(stack_a, stack_b);
 	check_sorted(stack_a);
     free_lst(stack_a);
     free_lst(stack_b);

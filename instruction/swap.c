@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:43:25 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/27 20:48:25by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:30:09 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void sa_swap(t_list **list, int flag)
     second->p_next = first;
     second->p_prev = NULL;
     (*list)->p_head = second;
+	init_index_lst(list);
     if (flag == 1)
         ft_putstr_fd("sa\n", 1);
 }
@@ -48,6 +49,7 @@ void sb_swap(t_list **list, int flag)
     second->p_next = first;
     second->p_prev = NULL;
     (*list)->p_head = second;
+	init_index_lst(list);
     if (flag == 1)
         ft_putstr_fd("sb\n", 1);
 }

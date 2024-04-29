@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:38:51 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/28 22:15:00 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:59:02 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_double(char **argv, int size, int i)
 		j = i + 1;
 		while (j < size)
 		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
+			if (ft_strcmp(ft_atoi(argv[i]), ft_atoi(argv[j])) == 0)
 				return (1);
 			j++;
 		}	
@@ -93,7 +93,7 @@ int check_error(char **argv, int argc)
 	if (not_digit(args, argc - 1, i) || is_double(args, argc - 1, i) 
 		|| outside_int(args, argc - 1))
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
