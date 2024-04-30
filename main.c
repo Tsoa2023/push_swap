@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/29 17:43:39 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:30:34 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,15 @@ int main(int argc, char *argv[])
 
     init_stack(stack_a, argv, argc);
 	ft_print_lst(stack_a, stack_b);
-	if ((*stack_a)->length <= 3)
-		three_elem(stack_a);
-	if ((*stack_a)->length >= 4 && (*stack_a)->length <= 10)
-		five_elem(stack_a, stack_b);
+	// if ((*stack_a)->length <= 3)
+	// 	three_elem(stack_a);
+	// if ((*stack_a)->length >= 4 && (*stack_a)->length <= 10)
+	// 	five_elem(stack_a, stack_b);
+	// sort_hundred(stack_a, stack_b);
+	struct node *node = (*stack_a)->p_head;
+	while () {
+	}
+	printf("%d\n", ->val);
 	
 	ft_print_lst(stack_a, stack_b);
 	check_sorted(stack_a);
