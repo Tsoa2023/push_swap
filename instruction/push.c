@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:15:14 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/29 14:46:28 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:10:23 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	pa_push(t_list **list_a, t_list **list_b, int flag)
 		(*list_b)->p_head->p_prev = NULL;
 	push(*list_a, node_b);
 	(*list_b)->length--;
+	(*list_a)->length++;
 	init_index_lst(list_a);
 	init_index_lst(list_b);
 	if (flag == 1)
@@ -66,6 +67,7 @@ void	pb_push(t_list **list_a, t_list **list_b, int flag)
 		(*list_a)->p_head->p_prev = NULL;
 	push(*list_b, node_a);
 	(*list_a)->length--;
+	(*list_b)->length++;
 	init_index_lst(list_a);
 	init_index_lst(list_b);
 	if (flag == 1)
