@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:16:29 by fharifen          #+#    #+#             */
-/*   Updated: 2024/05/01 11:50:46by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:58:00 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	top_min(t_list **stack_a)
 			else
 				while (rra_move--)
 					rra_rotate(stack_a, 1);
+			return ;
 		}
 		node = node->p_next;
 	}
@@ -58,7 +59,7 @@ void	sort1(t_list **stack_a, t_list **stack_b)
 		pa_push(stack_a, stack_b, 1);
 }
 
-// sort b to a
+// sort stack_b to stack_a 
 static void	top_max(t_list **stack_a, t_list **stack_b)
 {
 	struct node *node;
@@ -68,7 +69,7 @@ static void	top_max(t_list **stack_a, t_list **stack_b)
 	node = (*stack_b)->p_head;
 	while (node)
 	{
-		if (node->val == get_max(stack_b)->val)
+		if (node == get_max(stack_b))
 		{
 			index = node->index_lst;
 			i = 0;
@@ -84,7 +85,11 @@ static void	top_max(t_list **stack_a, t_list **stack_b)
 					rb_rotate(stack_b, 1);
 			pa_push(stack_a, stack_b, 1);
 			while (--i)
+			{
 				rrb_rotate(stack_b, 1);
+				if ((*stack_b)->p_head == get_max(stack_b))
+					pa_push(stack_a, stack_b, 1);
+			}
 		}
 		node = node->p_next;
 	}
