@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:16:29 by fharifen          #+#    #+#             */
-/*   Updated: 2024/05/02 12:58:00 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:05:37 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,91 @@ void	sort1(t_list **stack_a, t_list **stack_b)
 }
 
 // sort stack_b to stack_a 
-static void	top_max(t_list **stack_a, t_list **stack_b)
-{
-	struct node *node;
-	int			index;
-	int			i;
+// static void	top_max(t_list **stack_a, t_list **stack_b)
+// {
+// 	struct node *node;
+// 	int			index;
+// 	int			i;
 
-	node = (*stack_b)->p_head;
-	while (node)
+// 	node = (*stack_b)->p_head;
+// 	while (node)
+// 	{
+// 		if (node == get_max(stack_b))
+// 		{
+// 			index = node->index_lst;
+// 			i = 0;
+// 			if (get_max(stack_b)->index_lst == 1)
+// 				sb_swap(stack_b, 1);
+// 			if (get_max(stack_b)->index_lst == 0)
+// 			{
+// 				pa_push(stack_a, stack_b, 1);	
+// 				return ;
+// 			}	
+// 			else
+// 				while (i++ < index)
+// 					rb_rotate(stack_b, 1);
+// 			pa_push(stack_a, stack_b, 1);
+// 			while (--i)
+// 			{
+// 				rrb_rotate(stack_b, 1);
+// 				if ((*stack_b)->p_head == get_max(stack_b))
+// 					pa_push(stack_a, stack_b, 1);
+// 			}
+// 		}
+// 		node = node->p_next;
+// 	}
+// }
+
+static int	min_move(t_list **stack_b, int *do_ra, int *do_rra)
+{
+	struct node *node_top;
+	struct node *node_tail;
+
+	node_top = (*stack_b)->p_head;
+	node_tail = (*stack_b)->p_tail;
+	while (node_top)
 	{
-		if (node == get_max(stack_b))
+		if (node_top == get_max(stack_b))
 		{
-			index = node->index_lst;
-			i = 0;
-			if (get_max(stack_b)->index_lst == 1)
-				sb_swap(stack_b, 1);
-			if (get_max(stack_b)->index_lst == 0)
-			{
-				pa_push(stack_a, stack_b, 1);	
-				return ;
-			}	
-			else
-				while (i++ < index)
-					rb_rotate(stack_b, 1);
-			pa_push(stack_a, stack_b, 1);
-			while (--i)
-			{
-				rrb_rotate(stack_b, 1);
-				if ((*stack_b)->p_head == get_max(stack_b))
-					pa_push(stack_a, stack_b, 1);
-			}
+			*do_ra = node_top->index_lst;
+			break ;
 		}
-		node = node->p_next;
+		node_top = node_top->p_next;		
+	}
+	while (node_tail)
+	{
+		if (node_tail == get_max(stack_b))
+		{
+			*do_rra = (*stack_b)->length - node_tail->index_lst;
+			break ;
+		}
+		node_tail = node_tail->p_prev;		
+	}
+	if (*do_ra <= *do_rra)
+		return (1);
+	return (0);
+}
+
+static void	top_max_1(t_list **stack_b)
+{
+	int			rb_move;
+	int			rrb_move;
+	size_t 		j;
+
+	j = 0;
+	rb_move = 0;
+	rrb_move = 0;
+	while (j++ < (*stack_b)->length)
+	{
+			if (min_move(stack_b, &rb_move, &rrb_move) == 1)
+			{
+				while (rb_move--)
+					rb_rotate(stack_b, 1);
+			}
+			else
+				while (rrb_move--)
+					rrb_rotate(stack_b, 1);
+			return ;
 	}
 }
 
@@ -105,5 +158,8 @@ void	sort2(t_list **stack_a, t_list **stack_b)
 		return ;
 	i = 0;
 	while (i++ < size_b)
-		top_max(stack_a, stack_b);
+	{
+		top_max_1(stack_b);
+		pa_push(stack_a, stack_b, 1);
+	}
 }

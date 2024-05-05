@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:08:05 by fharifen          #+#    #+#             */
-/*   Updated: 2024/05/02 12:44:21 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/05 20:44:51 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 	}
 
     init_stack(stack_a, argv, argc);
-	ft_print_lst(stack_a, stack_b);
+
 	if ((*stack_a)->length <= 3)
 		three_elem(stack_a);
 	else if ((*stack_a)->length >= 4 && (*stack_a)->length <= 10)
@@ -101,8 +101,8 @@ int main(int argc, char *argv[])
 	else if ((*stack_a)->length > 10 && (*stack_a)->length <= 100)
 		sort_hundred(stack_a, stack_b);
 
-	ft_print_lst(stack_a, stack_b);
-	check_sorted(stack_a);
+	// ft_print_lst(stack_a, stack_b);
+	// check_sorted(stack_a);
     free_lst(stack_a);
     free_lst(stack_b);
 

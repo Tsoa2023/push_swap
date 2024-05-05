@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:59:44 by fharifen          #+#    #+#             */
-/*   Updated: 2024/05/01 11:56:04 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/04 00:04:48 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ struct node
     int			val;
 	int			index;
 	int			index_lst;
+    int         markup;
     struct node *p_next;
     struct node *p_prev;
 };
@@ -64,5 +65,6 @@ void	five_elem(t_list **stack_a, t_list **stack_b);
 void	sort_hundred(t_list **stack_a, t_list **stack_b);
 void	sort1(t_list **stack_a, t_list **stack_b);
 void	sort2(t_list **stack_a, t_list **stack_b);
+void	markup(t_list **stack_a);
 
 #endif

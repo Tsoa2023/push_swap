@@ -6,7 +6,7 @@
 /*   By: fharifen <fiononana.hari@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:50:36 by fharifen          #+#    #+#             */
-/*   Updated: 2024/04/29 10:01:08 by fharifen         ###   ########.fr       */
+/*   Updated: 2024/05/03 23:01:34 by fharifen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void ft_lstadd_back(t_list **list, int data)
         return ;
     new_node->val = data;
 	new_node->index = -1;
+	new_node->markup = 0;
     new_node->p_next = NULL;
     if ((*list)->p_tail == NULL)
     {
@@ -74,6 +75,8 @@ void ft_lstadd_top(t_list **list, int data)
 		return ;
 	new_node->val = data;
 	new_node->index = -1;
+	new_node->markup = 0;
+    new_node->p_next = NULL;
 	new_node->p_prev = NULL;
 	if ((*list)->p_head == NULL)
 	{
