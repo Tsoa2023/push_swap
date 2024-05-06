@@ -30,6 +30,11 @@
 // }
 
 
+// void	correct_spot(t_list **stack_a, t_list **stack_b)
+// {
+//
+// }
+
 int	under_pivot(t_list **stack_a, int key_target, int *do_ra, int *do_rra)
 {
 	struct node *node_top;
@@ -60,52 +65,64 @@ int	under_pivot(t_list **stack_a, int key_target, int *do_ra, int *do_rra)
 	return (0);
 }
 
-static void	top_key(t_list **stack_a, int size_a, int c, int pivot_len)
+static void	top_key(t_list **stack_a,/*  t_list **stack_b, */ int size_a, int c, int pivot_len)
 {
 	// struct node *node;
 	int			ra_move;
-	// int			prox;
 	int			rra_move;
 	size_t 		j;
 	int			key_target;
 
-	// node = (*stack_a)->p_head;
 	j = 0;
 	key_target = (size_a / pivot_len) * (1 * c);
 	ra_move = 0;
 	rra_move = 0;
-	// prox = (*stack_a)->length / 2;
 	while (j++ < (*stack_a)->length)
 	{
-		// if (node->index < key_target)
-		// {
-			// index = node->index_lst;
-			// rra_move = (*stack_a)->length - index;
-			if (/*prox >= index*/ under_pivot(stack_a, key_target, &ra_move, &rra_move) == 1)
+		if (under_pivot(stack_a, key_target, &ra_move, &rra_move) == 1)
+		{
+			while (ra_move--)
 			{
-				// printf("do_ra = %d\ndo_rra = %d\n", ra_move, rra_move);
-				while (ra_move--)
+				// if (ra_move < 1)
+				// 	rr_rotate(stack_a, stack_b, 1);
+				// else
 					ra_rotate(stack_a, 1);
+
 			}
-			else
-				while (rra_move--)
+		}
+		else
+			while (rra_move--)
+			{
+				// if (ra_move < 1)
+				// 	rrr_rotate(stack_a, stack_b, 1);
+				// else
 					rra_rotate(stack_a, 1);
-			return ;
-		// }
-		// node = node->p_next;
+			}
+		return ;
 	}
 }
 
 void	pb_key(t_list **stack_a, t_list **stack_b, int size_a, int c, int pivot_len)
 {
 	int	i;
+	int tmp;
+	static int med;
+	struct node *ptr;
 
+	if (med == 0)
+		med = (size_a / pivot_len) / 2;
+	tmp = (size_a / pivot_len);
 	i = 0;
 	while (i++ < (size_a / pivot_len)) 
 	{
-		top_key(stack_a, size_a, c, pivot_len);
+		top_key(stack_a, /* stack_b, */ size_a, c, pivot_len);
 		pb_push(stack_a, stack_b, 1);
+		ptr = (*stack_b)->p_head;
+		if (ptr->index < med)
+			rb_rotate(stack_b, 1);
 	}
+	med += tmp; 
+
 }
 
 void	sort_hundred(t_list **stack_a, t_list **stack_b)
@@ -119,8 +136,8 @@ void	sort_hundred(t_list **stack_a, t_list **stack_b)
 		return ;
 	size_a = (*stack_a)->length;
 	i = 0;
-	while (i++ < pivot_len + 2)
-		pb_key(stack_a, stack_b, size_a, i, (pivot_len + 3));	
-	sort1(stack_a, stack_b);	
+	while (i++ < pivot_len + 1) /* pivot_len + 2 et + 3*/
+		pb_key(stack_a, stack_b, size_a, i, (pivot_len));	
+	// sort1(stack_a, stack_b);	
 	sort2(stack_a, stack_b);
 }

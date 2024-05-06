@@ -17,12 +17,12 @@ void	push(t_list *list, struct node *elem)
 	if (elem == NULL)
 		return ;
 	elem->p_next = list->p_head;
-	if (list->p_tail != NULL || list->p_head != NULL)
+	elem->p_prev = NULL;
+	if (list->p_head != NULL)
 		list->p_head->p_prev = elem;
 	else
 		list->p_tail = elem;
 	list->p_head = elem;
-	list->p_head->p_prev = NULL;
 }
 
 void	push_back(t_list *list, struct node *elem)

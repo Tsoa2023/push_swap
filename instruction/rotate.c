@@ -32,7 +32,7 @@ void	rb_rotate(t_list **list, int flag)
 	struct node *node;
 
 	node = (*list)->p_head;
-	if (node == NULL)
+	if (node == NULL || node->p_next == NULL)
 		return ;
 	(*list)->p_head = node->p_next;
 	(*list)->p_head->p_prev = NULL;
