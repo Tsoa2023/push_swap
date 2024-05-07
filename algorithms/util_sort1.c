@@ -59,43 +59,7 @@ void	sort1(t_list **stack_a, t_list **stack_b)
 		pa_push(stack_a, stack_b, 1);
 }
 
-// sort stack_b to stack_a 
-// static void	top_max(t_list **stack_a, t_list **stack_b)
-// {
-// 	struct node *node;
-// 	int			index;
-// 	int			i;
-
-// 	node = (*stack_b)->p_head;
-// 	while (node)
-// 	{
-// 		if (node == get_max(stack_b))
-// 		{
-// 			index = node->index_lst;
-// 			i = 0;
-// 			if (get_max(stack_b)->index_lst == 1)
-// 				sb_swap(stack_b, 1);
-// 			if (get_max(stack_b)->index_lst == 0)
-// 			{
-// 				pa_push(stack_a, stack_b, 1);	
-// 				return ;
-// 			}	
-// 			else
-// 				while (i++ < index)
-// 					rb_rotate(stack_b, 1);
-// 			pa_push(stack_a, stack_b, 1);
-// 			while (--i)
-// 			{
-// 				rrb_rotate(stack_b, 1);
-// 				if ((*stack_b)->p_head == get_max(stack_b))
-// 					pa_push(stack_a, stack_b, 1);
-// 			}
-// 		}
-// 		node = node->p_next;
-// 	}
-// }
-
-static int	min_move(t_list **stack_b, int *do_ra, int *do_rra)
+static struct node	*min_move(t_list **stack_b, int *do_rb, int *do_rrb)
 {
 	struct node *node_top;
 	struct node *node_tail;
@@ -106,7 +70,7 @@ static int	min_move(t_list **stack_b, int *do_ra, int *do_rra)
 	{
 		if (node_top == get_max(stack_b))
 		{
-			*do_ra = node_top->index_lst;
+			*do_rb = node_top->index_lst;
 			break ;
 		}
 		node_top = node_top->p_next;		
@@ -115,43 +79,56 @@ static int	min_move(t_list **stack_b, int *do_ra, int *do_rra)
 	{
 		if (node_tail == get_max(stack_b))
 		{
-			*do_rra = (*stack_b)->length - node_tail->index_lst;
+			*do_rrb = (*stack_b)->length - node_tail->index_lst;
 			break ;
 		}
 		node_tail = node_tail->p_prev;		
 	}
-	if (*do_ra <= *do_rra)
-		return (1);
-	return (0);
+	if (*do_rb <= *do_rrb)
+		return (node_top);
+	return (node_tail);
 }
 
-static void	top_max_1(t_list **stack_b)
+static void	top_max_1(t_list **stack_a, t_list **stack_b, int *flag)
 {
+	struct node *node_b;
 	int			rb_move;
 	int			rrb_move;
-	size_t 		j;
 
-	j = 0;
 	rb_move = 0;
 	rrb_move = 0;
-	while (j++ < (*stack_b)->length)
-	{
-			if (min_move(stack_b, &rb_move, &rrb_move) == 1)
+		node_b = min_move(stack_b, &rb_move, &rrb_move);
+		if (rb_move <= rrb_move)
+		{
+			while (rb_move--)
 			{
-				while (rb_move--)
-					rb_rotate(stack_b, 1);
+				rb_rotate(stack_b, 1);
+				if ((*stack_b)->p_head->index == node_b->index - 1)
+				{
+					pa_push(stack_a, stack_b, 1);
+					*flag = 1;
+					rb_move--;
+				}
 			}
-			else
-				while (rrb_move--)
-					rrb_rotate(stack_b, 1);
-			return ;
-	}
+		}
+		else
+			while (rrb_move--)
+			{
+				rrb_rotate(stack_b, 1);
+				if ((*stack_b)->p_head->index == node_b->index + 1)
+				{
+					pa_push(stack_a, stack_b, 1);
+					*flag = 1;
+					rrb_move--;
+				}
+			}
 }
 
 void	sort2(t_list **stack_a, t_list **stack_b)
 {
 	size_t		i;
 	size_t		size_b;
+	int			flag;
 
 	size_b = (*stack_b)->length;
 	if ((*stack_b)->p_head == NULL)
@@ -159,7 +136,10 @@ void	sort2(t_list **stack_a, t_list **stack_b)
 	i = 0;
 	while (i++ < size_b)
 	{
-		top_max_1(stack_b);
+		flag = 0;
+		top_max_1(stack_a, stack_b, &flag);
 		pa_push(stack_a, stack_b, 1);
+		if (flag == 1)
+			sa_swap(stack_a, 1);
 	}
 }

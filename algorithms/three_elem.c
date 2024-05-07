@@ -12,6 +12,17 @@
 
 #include "../include/push_swap.h"
 
+static void	case2(t_list **stack_a)
+{
+		if ((*stack_a)->p_head->val > (*stack_a)->p_head->p_next->val)
+		{
+	 		sa_swap(stack_a, 1);
+			rra_rotate(stack_a, 1);
+		}
+		else
+			rra_rotate(stack_a, 1);
+}
+
 void three_elem(t_list **stack_a)
 {
     struct node *node;
@@ -28,13 +39,7 @@ void three_elem(t_list **stack_a)
 	}
 	else if (node->index_lst == 2)
 	{
-		if ((*stack_a)->p_head->val > (*stack_a)->p_head->p_next->val)
-		{
-	 		sa_swap(stack_a, 1);
-			rra_rotate(stack_a, 1);
-		}
-		else
-			rra_rotate(stack_a, 1);
+		case2(stack_a);
 	}	
 	else
 	{

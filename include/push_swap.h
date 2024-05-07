@@ -13,10 +13,10 @@
 #ifndef LIST_H
 # define LIST_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include<stdio.h>
+# include<stdlib.h>
 # include<limits.h>
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 struct node
 {
@@ -65,6 +65,5 @@ void	five_elem(t_list **stack_a, t_list **stack_b);
 void	sort_hundred(t_list **stack_a, t_list **stack_b);
 void	sort1(t_list **stack_a, t_list **stack_b);
 void	sort2(t_list **stack_a, t_list **stack_b);
-void	markup(t_list **stack_a);
 
 #endif
